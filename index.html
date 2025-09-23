@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的個人作品集</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --accent-primary: #06b6d4;
+            --accent-secondary: #f97316;
+            --border-color: #334155;
+            --hover-bg: #334155;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero-text .highlight {
+            color: var(--accent-primary);
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .hero-text .description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 3px solid var(--accent-primary);
+        }
+
+        .contact-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .contact-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-icons a:hover {
+            background: var(--accent-primary);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent-primary);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin-bottom: 4rem;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-text .highlight-text {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .about-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .about-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-primary);
+        }
+
+        .about-card .icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-primary);
+        }
+
+        .skill-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-primary);
+        }
+
+        .skill-item img {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-item span {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Portfolio Section */
+        .portfolio-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            color: var(--accent-secondary);
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-left: 4px solid var(--accent-secondary);
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 2rem;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-primary);
+        }
+
+        .project-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-meta {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-award {
+            color: var(--accent-secondary);
+            font-weight: 500;
+            margin: 0.5rem 0;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent-primary);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: var(--accent-secondary);
+            transform: translateY(-1px);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-primary);
+        }
+
+        .video-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .video-card-content {
+            padding: 1.5rem;
+        }
+
+        .video-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: var(--accent-primary);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .contact-link img {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content,
+            .about-content,
+            .project-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            display: block;
+            margin: auto;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 5%;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: var(--accent-primary);
+        }
+    </style>
+</head>
+<body>
+     Navigation 
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">我的作品集</a>
+            <ul class="nav-links">
+                <li><a href="#about" class="nav-link">關於我</a></li>
+                <li><a href="#skills" class="nav-link">技能</a></li>
+                <li><a href="#portfolio" class="nav-link">作品集</a></li>
+                <li><a href="#contact" class="nav-link">聯絡我</a></li>
+            </ul>
+        </div>
+    </nav>
+
+     Hero Section 
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Hi, 我是 <span class="highlight">您的名字</span></h1>
+                    <p class="subtitle">很高興認識您</p>
+                    <p class="description">
+                        我是一位熱愛創作的設計師與開發者，專注於打造優質的數位體驗。
+                        透過設計與技術的結合，創造出既美觀又實用的作品。
+                    </p>
+                    <div class="contact-icons">
+                        <a href="mailto:your.email@gmail.com" title="Email">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com/yourusername" title="GitHub" target="_blank">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://linkedin.com/in/yourusername" title="LinkedIn" target="_blank">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="/placeholder.svg?height=300&width=300" alt="個人照片">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">關於我</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/placeholder.svg?height=400&width=300" alt="關於我的照片">
+                </div>
+                <div class="about-text">
+                    <p>您好，我是 <span class="highlight-text">您的名字，一位熱愛創作的設計師與開發者</span></p>
+                    <p>專精於使用者體驗設計與前端開發，致力於創造直觀且美觀的數位產品。</p>
+                    <p>我相信好的設計不僅要美觀，更要能解決實際問題，為使用者帶來價值。</p>
+                    <p>在工作之餘，我喜歡探索新技術、閱讀設計相關書籍，並持續學習成長。</p>
+                </div>
+            </div>
+            
+            <div class="about-cards">
+                <div class="about-card">
+                    <h3>
+                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                        </svg>
+                        教育背景
+                    </h3>
+                    <p>國立大學<br>- 資訊工程學系<br>- 設計相關學程</p>
+                </div>
+                
+                <div class="about-card">
+                    <h3>
+                        <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 6h-2.18c.11-.31.18-.65.18-1a2.996 2.996 0 0 0-5.5-1.65l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"/>
+                        </svg>
+                        工作經歷
+                    </h3>
+                    <p>
+                        2022-2024 科技公司 - 前端工程師<br>
+                        2021-2022 設計工作室 - UI/UX 設計師<br>
+                        2020-2021 新創公司 - 產品設計實習生
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">我的技能</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>設計技能</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <img src="/placeholder.svg?height=40&width=40" alt="Figma">
+                            <span>Figma</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="/placeholder.svg?height=40&width=40" alt="Photoshop">
+                            <span>Photoshop</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="/placeholder.svg?height=40&width=40" alt="Illustrator">
+                            <span>Illustrator</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="/placeholder.svg?height=40&width=40" alt="Sketch">
+                            <span>Sketch</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>開發技能</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <img src="/placeholder.svg?height=40&width=40" alt="React">
+                            <span>React</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="/placeholder.svg?height=40&width=40" alt="JavaScript">
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="/placeholder.svg?height=40&width=40" alt="TypeScript">
+                            <span>TypeScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="/placeholder.svg?height=40&width=40" alt="Node.js">
+                            <span>Node.js</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>其他技能</h3>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <img src="/placeholder.svg?height=40&width=40" alt="Git">
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="/placeholder.svg?height=40&width=40" alt="Docker">
+                            <span>Docker</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="/placeholder.svg?height=40&width=40" alt="AWS">
+                            <span>AWS</span>
+                        </div>
+                        <div class="skill-item">
+                            <img src="/placeholder.svg?height=40&width=40" alt="MongoDB">
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">我的作品</h2>
+            
+            <div class="portfolio-category">
+                <h3 class="category-title">網頁設計專案</h3>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/placeholder.svg?height=250&width=400" alt="電商網站專案">
+                    </div>
+                    <div class="project-content">
+                        <h4 class="project-title">電商網站設計</h4>
+                        <p class="project-meta"><strong>個人專案</strong></p>
+                        <p class="project-meta"><strong>技術棧：</strong>React, Node.js, MongoDB</p>
+                        <p class="project-meta"><strong>完成時間：</strong>2024</p>
+                        <p>設計並開發了一個現代化的電商網站，包含購物車、付款系統和後台管理功能。</p>
+                        <p class="project-award">🏆 最佳設計獎</p>
+                        <a href="#" class="project-link" target="_blank">查看專案</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="/placeholder.svg?height=250&width=400" alt="行動應用程式">
+                    </div>
+                    <div class="project-content">
+                        <h4 class="project-title">行動應用程式</h4>
+                        <p class="project-meta"><strong>團隊合作專案</strong></p>
+                        <p class="project-meta"><strong>技術棧：</strong>React Native, Firebase</p>
+                        <p class="project-meta"><strong>完成時間：</strong>2024</p>
+                        <p>開發了一款社交媒體應用程式，具有即時聊天、照片分享和社群功能。</p>
+                        <p class="project-award">🏆 創新應用獎</p>
+                        <a href="#" class="project-link" target="_blank">查看專案</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-category">
+                <h3 class="category-title">設計作品</h3>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <img src="/placeholder.svg?height=200&width=300" alt="品牌設計">
+                        <div class="video-card-content">
+                            <p class="video-title"><strong>品牌識別設計</strong></p>
+                            <p class="project-award">🏆 設計競賽優選</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img src="/placeholder.svg?height=200&width=300" alt="海報設計">
+                        <div class="video-card-content">
+                            <p class="video-title"><strong>活動海報設計</strong></p>
+                            <p class="project-award">🏆 視覺設計獎</p>
+                        </div>
+                    </div>
+                    <div class="video-card">
+                        <img src="/placeholder.svg?height=200&width=300" alt="介面設計">
+                        <div class="video-card-content">
+                            <p class="video-title"><strong>使用者介面設計</strong></p>
+                            <p class="project-award">🏆 最佳UI設計</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">聯絡我</h2>
+            <div class="contact-content">
+                <p>如果您對我的作品感興趣，或想要討論合作機會，歡迎隨時與我聯繫！</p>
+                <div class="contact-links">
+                    <a href="mailto:your.email@gmail.com" class="contact-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        <span>your.email@gmail.com</span>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" class="contact-link" target="_blank">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="https://github.com/yourusername" class="contact-link" target="_blank">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        <span>GitHub</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="imageModal" class="modal">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <img id="modalImage" class="modal-content" src="/placeholder.svg" alt="展開圖片">
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Modal functionality
+        function openModal(img) {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImage");
+            const largeSrc = img.dataset.large || img.src;
+
+            modal.style.display = "block";
+            modalImg.src = largeSrc;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener("click", function(e) {
+            const modal = document.getElementById("imageModal");
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Add click handlers to expandable images
+        document.querySelectorAll('.expandable-img').forEach(img => {
+            img.addEventListener('click', function() {
+                openModal(this);
+            });
+        });
+    </script>
+</body>
+</html>
