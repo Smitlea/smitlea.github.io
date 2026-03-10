@@ -3,411 +3,1189 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>微笑 smitlea｜整合版作品集</title>
+  <title>Smitlea｜個人介紹與作品集</title>
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    /* ========== Reset & Base ========== */
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; line-height: 1.6; background:#0f172a; color:#f8fafc; }
-    img { display: block; max-width: 100%; height: auto; }
-    a { color: inherit; text-decoration: none; }
-
     :root {
-      /* Dark theme (原 index.html) */
-      --bg-primary: #0f172a;
-      --bg-secondary: #1e293b;
-      --text-primary: #f8fafc;
-      --text-secondary: #cbd5e1;
-      --text-muted: #64748b;
-      --accent-primary: #06b6d4; /* cyan */
-      --accent-secondary: #f97316; /* orange */
-      --border-color: #334155;
-      --hover-bg: #334155;
-
-      /* Light-ish variants for chips/badges (取自 smitlea.html 的氣質) */
-      --chip-bg: rgba(99,102,241,.12); /* indigo tint */
-      --chip-text: #c7d2fe;
-      --muted-on-dark: #94a3b8;
-      --card-radius: 16px;
+      --bg: #07111f;
+      --bg-soft: #0d1a2d;
+      --bg-card: rgba(14, 26, 45, 0.72);
+      --bg-card-strong: rgba(18, 32, 56, 0.94);
+      --text: #f8fbff;
+      --text-soft: #c7d3e6;
+      --muted: #7f92ad;
+      --line: rgba(145, 170, 210, 0.16);
+      --cyan: #3dd9eb;
+      --blue: #5b8cff;
+      --violet: #8b7dff;
+      --orange: #ff9a4d;
+      --glow: 0 10px 40px rgba(61, 217, 235, 0.18);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 16px;
       --container: 1200px;
+      --nav-h: 78px;
     }
 
-    .container{ max-width: var(--container); margin: 0 auto; padding: 0 2rem; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(61, 217, 235, 0.12), transparent 28%),
+        radial-gradient(circle at 85% 18%, rgba(139, 125, 255, 0.14), transparent 24%),
+        radial-gradient(circle at 50% 120%, rgba(91, 140, 255, 0.12), transparent 35%),
+        linear-gradient(180deg, #07111f 0%, #091423 40%, #07111f 100%);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
 
-    /* ========== Navbar ========== */
-    .navbar { position: fixed; inset: 0 0 auto 0; z-index: 1000; background: rgba(15,23,42,.95); backdrop-filter: blur(10px); border-bottom:1px solid var(--border-color); }
-    .nav-container { display:flex; justify-content:space-between; align-items:center; padding: 1rem 2rem; }
-    .logo { font-weight: 700; letter-spacing: .3px; }
-    .nav-links { display:flex; list-style:none; gap: 2rem; }
-    .nav-links a { color: var(--text-secondary); position: relative; font-weight: 500; }
-    .nav-links a:hover, .nav-links a.active { color: var(--accent-primary); }
-    .nav-links a::after{ content:""; position:absolute; left:0; bottom:-6px; height:2px; width:0; background: var(--accent-primary); transition: width .25s ease; }
-    .nav-links a:hover::after, .nav-links a.active::after{ width:100%; }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: radial-gradient(circle at center, black 48%, transparent 100%);
+      pointer-events: none;
+      z-index: -1;
+    }
 
-    /* ========== Hero ========== */
-    .hero { min-height: 100vh; display:flex; align-items:center; padding-top: 80px; }
-    .hero-grid { display:grid; grid-template-columns: 1fr 320px; gap: 4rem; align-items:center; }
-    .hero h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.1; margin: 0 0 .5rem; font-family: 'Raleway', sans-serif; }
-    .highlight { color: var(--accent-primary); }
-    .subtitle { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: .5rem; }
-    .description { color: var(--text-muted); max-width: 560px; margin-bottom: 1.5rem; }
-    .hero-image img{ width:100%; height:320px; object-fit:cover; border-radius: 20px; border: 2px solid var(--accent-primary); }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
 
-    .contact-icons { display:flex; gap:1rem; }
-    .contact-icons a { width:48px; height:48px; display:grid; place-items:center; background: var(--bg-secondary); border:1px solid var(--border-color); border-radius: 12px; color: var(--text-secondary); transition: all .25s ease; }
-    .contact-icons a:hover{ background: var(--accent-primary); color: var(--text-primary); transform: translateY(-2px); }
+    .container {
+      width: min(var(--container), calc(100% - 2.4rem));
+      margin: 0 auto;
+    }
 
-    /* ========== Sections ========== */
-    section { padding: 6rem 0; border-bottom: 1px solid var(--border-color); }
-    section:last-child { border-bottom: none; }
+    .glass {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      box-shadow: var(--glow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
 
-    .section-title { font-size: clamp(2rem, 3.5vw, 2.6rem); font-weight: 700; text-align:center; margin: 0 0 2rem; position: relative; font-family: 'Raleway', sans-serif; }
-    .section-title::after{ content:""; position:absolute; left:50%; transform: translateX(-50%); bottom:-10px; width:60px; height:3px; background: var(--accent-primary); border-radius: 2px; }
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(5, 12, 23, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
 
-    /* ========== About ========== */
-    .about-grid { display:grid; grid-template-columns: 300px 1fr; gap: 2rem; align-items: start; margin-bottom: 2rem; }
-    .about-image img{ width:100%; height:400px; object-fit:cover; border-radius: 16px; }
-    .about-text { color: var(--text-secondary); }
+    .nav-container {
+      min-height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
 
-    .about-cards{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .about-card{ background: var(--bg-secondary); border:1px solid var(--border-color); border-radius: var(--card-radius); padding: 1.5rem; }
-    .about-card h3{ display:flex; align-items:center; gap:.5rem; color: var(--accent-primary); margin:.2rem 0 1rem; font-size:1.2rem; }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      font-weight: 800;
+      letter-spacing: .04em;
+    }
 
-    /* ========== Skills ========== */
-    .skills-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .skill-card{ background: var(--bg-secondary); border:1px solid var(--border-color); border-radius: var(--card-radius); padding: 1.5rem; }
-    .skill-card h3{ color: var(--accent-primary); margin:.2rem 0 1rem; font-size:1.3rem; }
-    .skill-list{ display:grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap: .8rem; }
-    .skill-item{ display:flex; flex-direction:column; align-items:center; gap:.5rem; background: var(--bg-primary); border:1px solid var(--border-color); border-radius: 12px; padding: .9rem; color: var(--text-secondary); transition: border-color .25s, transform .25s; }
-    .skill-item:hover{ border-color: var(--accent-primary); transform: translateY(-2px); }
+    .logo-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(61, 217, 235, 0.24), rgba(139, 125, 255, 0.22));
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--cyan);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.06), 0 10px 25px rgba(61, 217, 235, 0.12);
+    }
 
-    /* ========== Portfolio (整合 smitlea 的作品區) ========== */
-    .filters{ display:flex; gap:.6rem; justify-content:center; margin: 0 0 1.2rem; flex-wrap: wrap; }
-    .filter-btn{ padding: .5rem .9rem; border-radius:999px; border:1px solid var(--border-color); background: var(--chip-bg); color: var(--chip-text); font-weight:700; cursor:pointer; }
-    .filter-btn.active{ background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); color:#fff; border-color: transparent; }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      margin: 0;
+      padding: 0;
+    }
 
-    .work-grid{ display:grid; grid-template-columns: 1fr; gap: 1rem; }
-    .work{ display:grid; grid-template-columns: 380px 1fr; gap: 1rem; background: var(--bg-secondary); border:1px solid var(--border-color); border-radius: var(--card-radius); overflow:hidden; }
-    .work-thumb{ height: 220px; background:#0b1220; }
-    .work-thumb img{ width:100%; height:100%; object-fit: cover; }
-    .work-body{ padding: 1rem 1rem 1.2rem; }
-    .work-meta{ color: var(--muted-on-dark); font-size:.9rem; display:flex; gap:.8rem; flex-wrap:wrap; margin-bottom:.4rem; }
-    .work-title{ margin:.1rem 0 .4rem; font-size:1.15rem; font-weight:700; font-family: 'Raleway', sans-serif; }
-    .work-desc{ color: var(--text-secondary); margin: 0 0 .8rem; }
-    .work-actions{ display:flex; gap:.6rem; flex-wrap:wrap; }
-    .btn{ display:inline-block; padding:.55rem .9rem; border-radius:10px; border:1px solid var(--border-color); font-weight:700; color: var(--text-primary); background: transparent; }
-    .btn.primary{ background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary)); border-color: transparent; }
+    .nav-link {
+      color: var(--text-soft);
+      font-size: .96rem;
+      font-weight: 600;
+      position: relative;
+      transition: color .25s ease;
+    }
 
-    .hidden{ display:none !important; }
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cyan), var(--violet));
+      transition: width .25s ease;
+    }
 
-    /* ========== Contact ========== */
-    .contact-center{ text-align:center; max-width: 640px; margin: 0 auto; }
-    .contact-links{ display:flex; justify-content:center; gap: 1rem; flex-wrap:wrap; margin-top: 1.25rem; }
-    .contact-link{ display:flex; align-items:center; gap:.6rem; padding:.9rem 1.2rem; background: var(--bg-secondary); border:1px solid var(--border-color); border-radius: 12px; color: var(--text-secondary); transition: all .25s; }
-    .contact-link:hover{ background: var(--accent-primary); color: var(--text-primary); transform: translateY(-2px); }
+    .nav-link:hover,
+    .nav-link.active { color: #fff; }
+    .nav-link:hover::after,
+    .nav-link.active::after { width: 100%; }
 
-    /* ========== Responsive ========== */
-    @media (max-width: 960px){
-      .hero-grid, .about-grid, .work{ grid-template-columns: 1fr; }
-      .hero { padding-top: 76px; }
-      .hero-image img{ height: 260px; }
-      .work-thumb{ height: 200px; }
-      .container{ padding: 0 1.2rem; }
+    .menu-btn {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      color: var(--text);
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 6.5rem 0;
+      position: relative;
+    }
+
+    .section-head {
+      margin-bottom: 2.2rem;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .45rem .9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(61,217,235,.22);
+      background: rgba(61,217,235,.08);
+      color: var(--cyan);
+      font-size: .88rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      margin: 0;
+      font-family: 'Raleway', sans-serif;
+      font-size: clamp(2.1rem, 4vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+    }
+
+    .section-desc {
+      max-width: 760px;
+      margin: 1rem auto 0;
+      color: var(--text-soft);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: calc(var(--nav-h) + 2rem);
+      padding-bottom: 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, .8fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero-copy {
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      border: 1px solid rgba(255,255,255,.09);
+      background: rgba(255,255,255,.04);
+      color: var(--text-soft);
+      border-radius: 999px;
+      padding: .55rem .9rem;
+      font-size: .92rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 6px rgba(74, 222, 128, 0.12);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 5vw, 5.2rem);
+      line-height: 1.02;
+      font-family: 'Raleway', sans-serif;
+      letter-spacing: -.03em;
+    }
+
+    .hero h1 .gradient {
+      background: linear-gradient(90deg, #fff, var(--cyan), #9bbcff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      margin: 1rem 0 1.1rem;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: var(--text-soft);
+      font-weight: 500;
+    }
+
+    .hero-desc {
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin-bottom: 1.7rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .9rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      min-height: 50px;
+      padding: 0 1.15rem;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: rgba(255,255,255,.03);
+      font-weight: 700;
+      transition: transform .25s ease, border-color .25s ease, background .25s ease, box-shadow .25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(61,217,235,.34);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--cyan), var(--blue) 58%, var(--violet));
+      border: none;
+      box-shadow: 0 12px 28px rgba(61, 217, 235, 0.2);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.03);
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      max-width: 680px;
+    }
+
+    .stat-card {
+      padding: 1rem 1.05rem;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: .15rem;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 32px;
+      padding: 1rem;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), transparent 35%);
+      pointer-events: none;
+    }
+
+    .hero-photo {
+      aspect-ratio: 4 / 5;
+      width: 100%;
+      border-radius: 24px;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,.12);
+    }
+
+    .floating-chip {
+      position: absolute;
+      border-radius: 16px;
+      padding: .75rem .95rem;
+      background: rgba(8, 16, 30, 0.9);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 14px 35px rgba(0,0,0,.28);
+      backdrop-filter: blur(10px);
+    }
+
+    .chip-a { top: 7%; left: -8%; }
+    .chip-b { right: -8%; top: 20%; }
+    .chip-c { left: -5%; bottom: 12%; }
+
+    .floating-chip strong {
+      display: block;
+      font-size: .92rem;
+      margin-bottom: .15rem;
+      color: #fff;
+    }
+
+    .floating-chip span {
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 320px minmax(0, 1fr);
+      gap: 1.6rem;
+      align-items: stretch;
+    }
+
+    .about-photo-card,
+    .about-panel,
+    .feature-card,
+    .project-card,
+    .contact-panel { border-radius: var(--radius-xl); }
+
+    .about-photo-card {
+      padding: 1rem;
+    }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+
+    .about-panel {
+      padding: 1.5rem;
+    }
+
+    .about-lead {
+      margin: 0 0 1rem;
+      font-size: 1.1rem;
+      color: #f4f9ff;
+    }
+
+    .about-text {
+      margin: 0;
+      color: var(--text-soft);
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .feature-card {
+      padding: 1.2rem;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+    }
+
+    .feature-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      margin-bottom: .9rem;
+      color: var(--cyan);
+      background: linear-gradient(135deg, rgba(61,217,235,.16), rgba(139,125,255,.12));
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .feature-card h3 {
+      margin: 0 0 .45rem;
+      font-size: 1.06rem;
+      color: #fff;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .skill-showcase {
+      display: grid;
+      gap: 1.4rem;
+    }
+
+    .skill-flow-card {
+      padding: 1.4rem;
+      border-radius: var(--radius-xl);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-flow-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .skill-flow-head h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #fff;
+    }
+
+    .skill-flow-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .flow-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.06);
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      padding: .9rem 0;
+    }
+
+    .flow-wrap::before,
+    .flow-wrap::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .flow-wrap::before {
+      left: 0;
+      background: linear-gradient(90deg, rgba(8,17,31,1), rgba(8,17,31,0));
+    }
+
+    .flow-wrap::after {
+      right: 0;
+      background: linear-gradient(270deg, rgba(8,17,31,1), rgba(8,17,31,0));
+    }
+
+    .flow-track {
+      display: flex;
+      width: max-content;
+      gap: .9rem;
+      animation: marquee 26s linear infinite;
+      padding: 0 .9rem;
+    }
+
+    .flow-track.reverse { animation-direction: reverse; animation-duration: 30s; }
+    .flow-track.slower { animation-duration: 36s; }
+
+    .skill-pill {
+      min-width: 180px;
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      padding: .95rem 1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+    }
+
+    .skill-icon {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(61,217,235,.18), rgba(139,125,255,.12));
+      border: 1px solid rgba(255,255,255,.09);
+      color: #fff;
+      font-size: .95rem;
+      font-weight: 800;
+    }
+
+    .skill-pill strong {
+      display: block;
+      color: #fff;
+      font-size: .98rem;
+      margin-bottom: .12rem;
+    }
+
+    .skill-pill span {
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .skill-highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .highlight-card {
+      padding: 1.2rem;
+      border-radius: 22px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+    }
+
+    .highlight-card h4 {
+      margin: 0 0 .45rem;
+      font-size: 1rem;
+    }
+
+    .highlight-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-btn {
+      padding: .7rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      color: var(--text-soft);
+      cursor: pointer;
+      font-weight: 700;
+      transition: all .25s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      color: #fff;
+      background: linear-gradient(135deg, rgba(61,217,235,.18), rgba(91,140,255,.18));
+      border-color: rgba(61,217,235,.34);
+      box-shadow: 0 10px 24px rgba(61, 217, 235, 0.12);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      overflow: hidden;
+      transition: transform .28s ease, border-color .28s ease;
+      border: 1px solid var(--line);
+      background: var(--bg-card-strong);
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(61,217,235,.3);
+    }
+
+    .project-cover {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background: #081120;
+      overflow: hidden;
+    }
+
+    .project-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .45s ease;
+    }
+
+    .project-card:hover .project-cover img { transform: scale(1.05); }
+
+    .project-overlay {
+      position: absolute;
+      inset: auto 1rem 1rem 1rem;
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: .35rem .65rem;
+      border-radius: 999px;
+      background: rgba(7, 17, 31, 0.72);
+      border: 1px solid rgba(255,255,255,.08);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      backdrop-filter: blur(10px);
+    }
+
+    .project-body {
+      padding: 1.15rem;
+    }
+
+    .project-meta {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: .88rem;
+      margin-bottom: .5rem;
+    }
+
+    .project-title {
+      margin: 0 0 .55rem;
+      font-size: 1.18rem;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .project-desc {
+      margin: 0 0 1rem;
+      color: var(--text-soft);
+      font-size: .96rem;
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+    }
+
+    .contact-panel {
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 1.2rem;
+      align-items: stretch;
+    }
+
+    .contact-copy h3 {
+      margin: 0 0 .8rem;
+      font-size: 1.5rem;
+      font-family: 'Raleway', sans-serif;
+    }
+
+    .contact-copy p {
+      margin: 0;
+      color: var(--text-soft);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: .9rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      padding: 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--line);
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(61,217,235,.3);
+    }
+
+    .contact-icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(61,217,235,.16), rgba(139,125,255,.12));
+      border: 1px solid rgba(255,255,255,.08);
+      color: #fff;
+      flex: 0 0 46px;
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: .12rem;
+      color: #fff;
+    }
+
+    .contact-item span {
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    footer {
+      padding: 2rem 0 2.8rem;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,.06);
+      background: rgba(255,255,255,.01);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 1060px) {
+      .hero-grid,
+      .about-grid,
+      .contact-panel,
+      .project-grid,
+      .skill-highlight-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-meta { grid-template-columns: 1fr; }
+      .chip-a, .chip-b, .chip-c { position: static; margin-top: .8rem; }
+      .hero-visual { display: grid; gap: .8rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        position: fixed;
+        top: calc(var(--nav-h) + 6px);
+        left: 1rem;
+        right: 1rem;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: .3rem;
+        padding: .8rem;
+        border-radius: 20px;
+        background: rgba(8, 17, 31, 0.94);
+        border: 1px solid rgba(255,255,255,.08);
+        box-shadow: 0 18px 40px rgba(0,0,0,.28);
+      }
+
+      .nav-links.open { display: flex; }
+      .nav-link { padding: .8rem .9rem; border-radius: 12px; }
+      .nav-link:hover { background: rgba(255,255,255,.04); }
+      .nav-link::after { display: none; }
+      .menu-btn { display: inline-flex; }
+
+      .hero { min-height: auto; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+      section { padding: 5rem 0; }
+      .flow-wrap::before,
+      .flow-wrap::after { width: 42px; }
+      .skill-pill { min-width: 160px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .flow-track,
+      .reveal,
+      .btn,
+      .project-card,
+      .skill-pill,
+      .contact-item { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 <body>
-  <!-- ===== Navbar ===== -->
   <nav class="navbar">
-    <div class="nav-container">
-      <a href="#" class="logo">我的作品集</a>
-      <ul class="nav-links">
+    <div class="container nav-container">
+      <a href="#top" class="logo" aria-label="回到首頁">
+        <span class="logo-mark">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3 4 7.5V16.5L12 21l8-4.5V7.5L12 3Z" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8.5 10.2 12 12l3.5-1.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>Smitlea Portfolio</span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="切換選單" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
         <li><a href="#about" class="nav-link">關於我</a></li>
-        <li><a href="#skills" class="nav-link">技能</a></li>
+        <li><a href="#skills" class="nav-link">技能亮點</a></li>
         <li><a href="#portfolio" class="nav-link">作品集</a></li>
         <li><a href="#contact" class="nav-link">聯絡我</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ===== Hero ===== -->
   <section class="hero" id="top">
-    <div class="container">
-      <div class="hero-grid">
-        <div>
-          <h1>Hi, I'm <span class="highlight">Smitlea</span></h1>
-          <p class="subtitle">nice to meet you</p>
-          <p class="description">我是一位熱愛創作的設計師與開發者，專注於打造優質的數位體驗。透過設計與技術的結合，創造出既美觀又實用的作品。</p>
-          <div class="contact-icons">
-            <a href="mailto:28380439a@gmail.com" title="Email" aria-label="Email">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            </a>
-            <a href="https://github.com/smitlea" target="_blank" title="GitHub" aria-label="GitHub">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.72-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.31-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.53-1.52.12-3.17 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.7.8.58C20.56 21.78 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg>
-            </a>
-            <a href="https://linkedin.com/in/smitlea" target="_blank" title="LinkedIn" aria-label="LinkedIn">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43A2.06 2.06 0 1 1 5.34 3.3a2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"/></svg>
-            </a>
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          <span>設計 × 開發 × 創意 x 藝術</span>
+        </div>
+        <h1>打造讓人記住的<br><span class="gradient">數位作品與獨特設計</span></h1>
+        <p class="hero-subtitle">我是微笑，一位全端工程師</p>
+        <p class="hero-desc">
+          我專注在視覺設計、系統開發與產品設計之間的交會點，擅長把抽象需求整理成清楚的資訊架構、順暢的互動流程，以及兼顧美感與可維護性的介面。
+        </p>
+
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn btn-primary">查看我的作品</a>
+          <a href="#contact" class="btn btn-secondary">合作與聯絡</a>
+        </div>
+
+        <div class="hero-meta">
+          <div class="stat-card">
+            <span class="stat-number">5530 小時</span>
+            <span class="stat-label">程式開發時間</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">Design + Dev</span>
+            <span class="stat-label">跨領域整合能力</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number">RWD / UX</span>
+            <span class="stat-label">重視體驗與效能細節</span>
           </div>
         </div>
-        <div class="hero-image"><img src="https://smitlea.github.io/02.jpg" alt="個人照片"></div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="hero-card glass">
+          <img class="hero-photo" src="/Users/pter/Desktop/smitlea/smitlea.github.io/31.png" alt="Smitlea 個人照片">
+        </div>
+        <div class="floating-chip chip-a">
+          <strong>UI / UX 規劃</strong>
+          <span>資訊層次、視覺節奏、操作流暢度</span>
+        </div>
+        <div class="floating-chip chip-b">
+          <strong>前端實作</strong>
+          <span>React / TypeScript / 響應式介面</span>
+        </div>
+        <div class="floating-chip chip-c">
+          <strong>藝術創作</strong>
+          <span>3D列印、美術設計通通難不倒我 :v</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== About ===== -->
   <section id="about">
     <div class="container">
-      <h2 class="section-title">關於我</h2>
+      <div class="section-head reveal">
+        <div class="eyebrow">About Me</div>
+        <h2 class="section-title">不只會做畫面，更追求藝術設計</h2>
+        <p class="section-desc">我將設計與開發視爲一件事物：前者負責打動人心，後者負責真材實料，和我一樣。</p>
+      </div>
+
       <div class="about-grid">
-        <div class="about-image"><img src="https://smitlea.github.io/Q.jpg" alt="Q 版照片"></div>
-        <div class="about-text">
-          <p>擅長以設計思維連結產品與使用者，將需求切割成可交付的頁面模組與元件。重視語意化 HTML、可維護 CSS 與乾淨的 JS 結構；熟悉 RWD 與效能優化。</p>
-          <div class="about-cards">
-            <div class="about-card">
-              <h3>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3 1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
-                教育背景
-              </h3>
-              <p>國立臺中科技大學 -> 資訊工程學系 <br>接洽中研院、仁寶等數公司約 12 項專案</p>
-            </div>
-            <div class="about-card">
-              <h3>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.11-.31.18-.65.18-1a3 3 0 0 0-5.5-1.65l-.5.67-.5-.68A3 3 0 0 0 9 2 3 3 0 0 0 6 5c0 .35.07.69.18 1H4C2.89 6 2 6.89 2 8v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2z"/></svg>
-                工作經歷
-              </h3>
-              <p>2024–2025 精誠隨想科技公司 - 雲架構技術研發處<br>2022–2024 AI / IoT<br>2020–2021 台北城市黑客松 · 優選</p>
-            </div>
+        <div class="about-photo-card glass reveal">
+          <img class="about-photo" src="https://smitlea.github.io/Q.jpg" alt="Smitlea Q版形象圖">
+        </div>
+
+        <div class="about-panel glass reveal">
+          <p class="about-lead">擅長將需求整理成可實作的頁面模組，並用穩定、好維護的方式交付。</p>
+          <p class="about-text">
+            我重視語意化 HTML、乾淨的 CSS 架構與清晰的互動邏輯，也習慣從使用者視角反推資訊排序、操作優先順序與頁面敘事。除了把畫面做得好看，我也在意每一個區塊是否真的有傳達價值。
+          </p>
+
+          <div class="feature-grid">
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 3 2.5 8 12 13l9.5-5L12 3Z" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M5 10.5V16l7 4 7-4v-5.5" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <h3>教育背景</h3>
+              <p>國立臺中科技大學 · 資訊工程學系，持續把技術能力延伸到產品與介面設計。</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M7 21h10M12 17v4M6 3h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <h3>工作與合作</h3>
+              <p>曾接洽中研院、仁寶與企業專案，累積跨部門溝通與實作交付經驗。</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <h3>跨域整合</h3>
+              <p>結合視覺、程式與產品思維，能在不同角色間切換並補齊落地細節。</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4 18 10 12l4 4 6-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <h3>做事方式</h3>
+              <p>先拆需求，再建立頁面優先級與敘事節奏，最後把細節打磨到可直接展示。</p>
+            </article>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== Skills ===== -->
-<section id="skills">
-  <style>
-    /* 小範圍樣式覆蓋：只影響本區塊 */
-    #skills .skill-card { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; }
-    #skills .skill-card h3 { color: var(--accent-primary); margin: .2rem 0 1rem; font-size: 1.3rem; }
-    #skills .skill-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: .9rem; }
-    #skills .skill-item { display: flex; align-items: center; gap: .8rem; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 12px; padding: .8rem 1rem; color: var(--text-secondary); transition: border-color .25s, transform .25s; }
-    #skills .skill-item:hover { border-color: var(--accent-primary); transform: translateY(-2px); }
-    #skills .skill-item svg { width: 40px; height: 40px; flex: 0 0 40px; }
-    #skills .skill-item .icon-box { width:40px; height:40px; display:grid; place-items:center; border-radius:8px; border:1px solid var(--border-color); background: rgba(255,255,255,0.02); font-weight:800; letter-spacing:.5px; }
-    #skills .skill-item .label { font-size:.95rem; color: var(--text-primary); }
-    #skills .skills-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-  </style>
-
-  <div class="container">
-    <h2 class="section-title">我的技能</h2>
-
-    <div class="skills-grid">
-      <!-- 設計技能 -->
-      <div class="skill-card">
-        <h3>設計技能</h3>
-        <div class="skill-list">
-          <!-- Fusion 360：立方體/3D -->
-          <div class="skill-item">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3 3.5 7.5 12 12l8.5-4.5L12 3Z" stroke="currentColor" stroke-width="1.5" />
-              <path d="M3.5 7.5V16.5L12 21v-9" stroke="currentColor" stroke-width="1.5" />
-              <path d="M20.5 7.5V16.5L12 21" stroke="currentColor" stroke-width="1.5" />
-            </svg>
-            <span class="label">Fusion 360</span>
-          </div>
-
-          <!-- Clip Studio：鋼筆筆尖 -->
-          <div class="skill-item">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3 7 12l5 2 5-2-5-9Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              <circle cx="12" cy="12" r="1.6" fill="currentColor"/>
-              <path d="M9 15l-1.5 4.5M15 15l1.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <span class="label">Clip</span>
-          </div>
-
-          <!-- Illustrator：AI 文字方塊 -->
-          <div class="skill-item">
-            <div class="icon-box" aria-hidden="true">Ai</div>
-            <span class="label">Illustrator</span>
-          </div>
-
-          <!-- After Effects：AE 文字方塊 -->
-          <div class="skill-item">
-            <div class="icon-box" aria-hidden="true">Ae</div>
-            <span class="label">After Effects</span>
-          </div>
-        </div>
+  <section id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="eyebrow">Skills Flow</div>
+        <h2 class="section-title">技能展示</h2>
+        <p class="section-desc">時間的堆疊下，持續精進的技能集，我想搜集他們，我想搜集他們全部</p>
       </div>
 
-      <!-- 開發技能 -->
-      <div class="skill-card">
-        <h3>開發技能</h3>
-        <div class="skill-list">
-          <!-- Python：蛇形/程式圖示（簡化） -->
-          <div class="skill-item">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="4" y="6" width="10" height="6" rx="3" stroke="currentColor" stroke-width="1.5"/>
-              <rect x="10" y="12" width="10" height="6" rx="3" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="8" cy="9" r="0.9" fill="currentColor"/>
-              <circle cx="16" cy="15" r="0.9" fill="currentColor"/>
-            </svg>
-            <span class="label">Python</span>
+      <div class="skill-showcase">
+        <div class="skill-flow-card glass reveal">
+          <div class="skill-flow-head">
+            <div>
+              <h3>設計與創作</h3>
+              <p>視覺設計、品牌表現、動態內容與 3D 工具整合。</p>
+            </div>
           </div>
-
-          <!-- Go：GO 文字方塊 -->
-          <div class="skill-item">
-            <div class="icon-box" aria-hidden="true">Go</div>
-            <span class="label">Go</span>
-          </div>
-
-          <!-- TypeScript：TS 文字方塊 -->
-          <div class="skill-item">
-            <div class="icon-box" aria-hidden="true">TS</div>
-            <span class="label">TypeScript</span>
-          </div>
-
-          <!-- React：原子/三葉橢圓（簡化） -->
-          <div class="skill-item">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="1.6" fill="currentColor"/>
-              <ellipse cx="12" cy="12" rx="9" ry="4.2" stroke="currentColor" stroke-width="1.4"/>
-              <ellipse cx="12" cy="12" rx="4.2" ry="9" transform="rotate(60 12 12)" stroke="currentColor" stroke-width="1.4"/>
-              <ellipse cx="12" cy="12" rx="4.2" ry="9" transform="rotate(-60 12 12)" stroke="currentColor" stroke-width="1.4"/>
-            </svg>
-            <span class="label">React</span>
+          <div class="flow-wrap">
+            <div class="flow-track">
+              <div class="skill-pill"><div class="skill-icon">F3</div><div><strong>Fusion 360</strong><span>3D 建模 / 結構構思</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">CL</div><div><strong>Clip Studio</strong><span>繪圖與角色創作</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Ai</div><div><strong>Illustrator</strong><span>向量設計 / 視覺排版</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Ae</div><div><strong>After Effects</strong><span>動態視覺 / 影像節奏</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">F3</div><div><strong>Fusion 360</strong><span>3D 建模 / 結構構思</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">CL</div><div><strong>Clip Studio</strong><span>繪圖與角色創作</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Ai</div><div><strong>Illustrator</strong><span>向量設計 / 視覺排版</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Ae</div><div><strong>After Effects</strong><span>動態視覺 / 影像節奏</span></div></div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- 其他技能 -->
-      <div class="skill-card">
-        <h3>其他技能</h3>
-        <div class="skill-list">
-          <!-- Git：分支圖示 -->
-          <div class="skill-item">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="6" cy="5" r="2" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="6" cy="19" r="2" stroke="currentColor" stroke-width="1.5"/>
-              <circle cx="18" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M8 5h5a3 3 0 0 1 3 3v0M8 19h5a3 3 0 0 0 3-3v0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-              <path d="M6 7v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <span class="label">Git</span>
+        <div class="skill-flow-card glass reveal">
+          <div class="skill-flow-head">
+            <div>
+              <h3>開發與工程</h3>
+              <p>前端互動、後端邏輯、雲端部署與工程化思維。</p>
+            </div>
           </div>
+          <div class="flow-wrap">
+            <div class="flow-track reverse">
+              <div class="skill-pill"><div class="skill-icon">Py</div><div><strong>Python</strong><span>自動化 / API / 工具開發</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Go</div><div><strong>Go</strong><span>高效服務與後端邏輯</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">TS</div><div><strong>TypeScript</strong><span>大型前端專案可維護性</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Re</div><div><strong>React</strong><span>元件化與互動介面</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Py</div><div><strong>Python</strong><span>自動化 / API / 工具開發</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Go</div><div><strong>Go</strong><span>高效服務與後端邏輯</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">TS</div><div><strong>TypeScript</strong><span>大型前端專案可維護性</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Re</div><div><strong>React</strong><span>元件化與互動介面</span></div></div>
+            </div>
+          </div>
+        </div>
 
-          <!-- Docker：貨櫃/方塊堆疊（中性造型） -->
-          <div class="skill-item">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="4" y="12" width="4" height="3" stroke="currentColor" stroke-width="1.5"/>
-              <rect x="8" y="12" width="4" height="3" stroke="currentColor" stroke-width="1.5"/>
-              <rect x="12" y="12" width="4" height="3" stroke="currentColor" stroke-width="1.5"/>
-              <rect x="8" y="9" width="4" height="3" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M3.5 17.5h14a4 4 0 0 0 3.5-2l.5-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <span class="label">Docker</span>
+        <div class="skill-flow-card glass reveal">
+          <div class="skill-flow-head">
+            <div>
+              <h3>工具與實務能力</h3>
+              <p>協作、部署、版本控制與系統整合。</p>
+            </div>
           </div>
+          <div class="flow-wrap">
+            <div class="flow-track slower">
+              <div class="skill-pill"><div class="skill-icon">Git</div><div><strong>Git</strong><span>版本控制 / 協作流程</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Doc</div><div><strong>Docker</strong><span>容器化與部署環境</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Node</div><div><strong>Node.js</strong><span>工具鏈與前端生態</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">K8s</div><div><strong>Kubernetes</strong><span>規模化服務與維運思維</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Git</div><div><strong>Git</strong><span>版本控制 / 協作流程</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Doc</div><div><strong>Docker</strong><span>容器化與部署環境</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">Node</div><div><strong>Node.js</strong><span>工具鏈與前端生態</span></div></div>
+              <div class="skill-pill"><div class="skill-icon">K8s</div><div><strong>Kubernetes</strong><span>規模化服務與維運思維</span></div></div>
+            </div>
+          </div>
+        </div>
 
-          <!-- Node.js：六角 + JS -->
-          <div class="skill-item">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3 4.5 7v10L12 21l7.5-4V7L12 3Z" stroke="currentColor" stroke-width="1.5" />
-              <text x="9" y="14.5" fill="currentColor" font-size="6" font-weight="700">JS</text>
-            </svg>
-            <span class="label">Node.js</span>
-          </div>
-
-          <!-- 效能最佳化 / Kubernetes：齒輪（中性圖示，更通用） -->
-          <div class="skill-item">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <circle cx="12" cy="12" r="2.2" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M12 3.8v2.1M12 18.1v2.1M4.6 7.1l1.5 1.2M17.9 15.7l1.5 1.2M3.8 12h2.1M18.1 12h2.1M4.6 16.9l1.5-1.2M17.9 8.3l1.5-1.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-            <span class="label">Kubernetes</span>
-          </div>
+        <div class="skill-highlight-grid reveal">
+          <article class="highlight-card">
+            <h4>我能做的不只是單點技能</h4>
+            <p>更擅長把設計、程式與專案交付串起來，形成完整的展示與實用價值。</p>
+          </article>
+          <article class="highlight-card">
+            <h4>技能展示改成流動敘事</h4>
+            <p>用連續跑馬流展示，能比傳統卡片牆更有節奏，也更有記憶點。</p>
+          </article>
+          <article class="highlight-card">
+            <h4>可再延伸成分類互動</h4>
+            <p>後續也能加入 hover 暫停、點擊展開或技能熟練度細節，架構上可延伸。</p>
+          </article>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-  <!-- ===== Portfolio (整合 & 可篩選) ===== -->
   <section id="portfolio">
     <div class="container">
-      <h2 class="section-title">我的作品</h2>
-
-      <!-- Tabs (取自 smitlea.html 的分類概念) -->
-      <div class="filters" aria-label="作品分類">
-        <button class="filter-btn active" data-filter="all">全部</button>
-        <button class="filter-btn" data-filter="web">網頁設計</button>
-        <button class="filter-btn" data-filter="app">App / 互動</button>
-        <button class="filter-btn" data-filter="video">剪輯 / 影像</button>
+      <div class="section-head reveal">
+        <div class="eyebrow">作品精選</div>
+        <h2 class="section-title">精選作品與實作成果</h2>
+        <p class="section-desc">我偏好把作品整理成有脈絡的展示，不只放截圖，而是讓每個專案都能快速看懂定位、技術與成果。</p>
       </div>
 
-      <div class="work-grid">
-        <!-- 作品：電商網站設計 (web) -->
-        <article class="work" data-cat="web">
-          <div class="work-thumb">
-            <img src="https://smitlea.github.io/website.png" alt="電商網站專案縮圖" style="max-width: 400px; height: auto; border-radius: 12px;" />
+      <div class="filters reveal" aria-label="作品分類">
+        <button class="filter-btn active" data-filter="all">全部作品</button>
+        <button class="filter-btn" data-filter="web">網頁設計</button>
+        <button class="filter-btn" data-filter="app">App / 系統</button>
+        <button class="filter-btn" data-filter="video">影像剪輯</button>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card reveal" data-cat="web">
+          <div class="project-cover">
+            <img src="https://smitlea.github.io/website.png" alt="電商網站設計專案縮圖">
+            <div class="project-overlay">
+              <span class="tag">個人專案</span>
+              <span class="tag">2024</span>
+              <span class="tag">WordPress / FastAPI / Postgres</span>
+            </div>
           </div>
-          <div class="work-body">
-            <div class="work-meta"><span>個人專案</span><span>2024</span><span>Wordpress/ fastapi/ postgress</span></div>
-            <h3 class="work-title">電商網站設計</h3>
-            <p class="work-desc">從資訊架構、UI 規劃到前端實作，涵蓋購物車、付款流程與後台管理等模組。</p>
-            <div class="work-actions">
-              <a class="btn" href="catslime.com" target="_blank" rel="noopener">查看專案</a>
+          <div class="project-body">
+            <div class="project-meta"><span>Web Design</span><span>UI / 架構 / 商業流程</span></div>
+            <h3 class="project-title">電商網站設計</h3>
+            <p class="project-desc">從資訊架構、頁面視覺到購物流程與後台模組規劃，整合商業邏輯與使用者操作體驗。</p>
+            <div class="project-actions">
+              <a class="btn btn-secondary" href="https://catslime.com" target="_blank" rel="noopener">查看專案</a>
             </div>
           </div>
         </article>
 
-        <!-- 作品：社群應用程式 (app) -->
-        <article class="work" data-cat="app">
-          <div class="work-thumb">
-            <img src="/placeholder.svg?height=300&width=520" alt="社群 App 專案縮圖" />
+        <article class="project-card reveal" data-cat="app">
+          <div class="project-cover">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80" alt="社群應用程式專案縮圖">
+            <div class="project-overlay">
+              <span class="tag">團隊專案</span>
+              <span class="tag">2024</span>
+              <span class="tag">React Native / Firebase</span>
+            </div>
           </div>
-          <div class="work-body">
-            <div class="work-meta"><span>團隊專案</span><span>2024</span><span>React Native / Firebase</span></div>
-            <h3 class="work-title">社群應用程式</h3>
-            <p class="work-desc">即時聊天、照片分享、推播與基本社群功能，負責前端頁面與元件化。</p>
-            <div class="work-actions">
-              <a class="btn" href="#" target="_blank" rel="noopener">查看專案</a>
+          <div class="project-body">
+            <div class="project-meta"><span>Mobile App</span><span>社群互動 / 即時功能</span></div>
+            <h3 class="project-title">社群應用程式</h3>
+            <p class="project-desc">以行動端體驗為核心，規劃即時聊天、照片分享與互動模組，重視元件一致性與操作直覺。</p>
+            <div class="project-actions">
+              <a class="btn btn-secondary" href="#" rel="noopener">查看專案</a>
             </div>
           </div>
         </article>
 
-        <!-- 作品：活動剪輯精華 (video) -->
-        <article class="work" data-cat="video">
-          <div class="work-thumb">
-            <img src="/placeholder.svg?height=300&width=520" alt="剪輯作品縮圖" />
+        <article class="project-card reveal" data-cat="video">
+          <div class="project-cover">
+            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80" alt="活動剪輯作品縮圖">
+            <div class="project-overlay">
+              <span class="tag">個人作品</span>
+              <span class="tag">2023</span>
+              <span class="tag">Premiere / After Effects</span>
+            </div>
           </div>
-          <div class="work-body">
-            <div class="work-meta"><span>個人作品</span><span>2023</span><span>Premiere / After Effects</span></div>
-            <h3 class="work-title">活動剪輯精華</h3>
-            <p class="work-desc">剪輯活動紀錄與字幕、轉場特效設計，注重節奏與音畫配合。</p>
-            <div class="work-actions">
-              <a class="btn" href="#" target="_blank" rel="noopener">觀看影片</a>
+          <div class="project-body">
+            <div class="project-meta"><span>Video Editing</span><span>節奏 / 字幕 / 特效</span></div>
+            <h3 class="project-title">活動剪輯精華</h3>
+            <p class="project-desc">透過節奏剪接、字卡與轉場包裝活動內容，讓觀看體驗更集中，也更有品牌感。</p>
+            <div class="project-actions">
+              <a class="btn btn-secondary" href="#" rel="noopener">觀看作品</a>
             </div>
           </div>
         </article>
 
-        <!-- 作品：HsinyuOS (web/app) → 分類放 web 也可 -->
-        <article class="work" data-cat="web">
-          <div class="work-thumb">
-            <img src="https://smitlea.github.io/首頁.png" alt="HsinyuOS 專案縮圖" style="max-width: 400px; height: auto; border-radius: 12px;" />
+        <article class="project-card reveal" data-cat="app">
+          <div class="project-cover">
+            <img src="https://smitlea.github.io/%E9%A6%96%E9%A0%81.png" alt="HsinyuOS 專案縮圖">
+            <div class="project-overlay">
+              <span class="tag">團隊專案</span>
+              <span class="tag">2024</span>
+              <span class="tag">Flask / Cloudflare / Swift</span>
+            </div>
           </div>
-          <div class="work-body">
-            <div class="work-meta"><span>團隊專案</span><span>2024</span><span>Flask / Cloudflare / Swift</span></div>
-            <h3 class="work-title">HsinyuOS 吊車管理系統</h3>
-            <p class="work-desc">為信昱公司開發吊車管理系統，打造 iOS 與 Web 前端，支援現場作業流程與安全告警。</p>
-            <div class="work-actions">
-              <a class="btn" href="#" target="_blank" rel="noopener">查看專案</a>
+          <div class="project-body">
+            <div class="project-meta"><span>System Design</span><span>iOS / Web / 管理流程</span></div>
+            <h3 class="project-title">HsinyuOS 吊車管理系統</h3>
+            <p class="project-desc">為企業打造現場作業與管理系統，涵蓋行動端與 Web 操作介面，提升流程可視性與管理效率。</p>
+            <div class="project-actions">
+              <a class="btn btn-secondary" href="#" rel="noopener">查看專案</a>
             </div>
           </div>
         </article>
@@ -415,73 +1193,108 @@
     </div>
   </section>
 
-  <!-- ===== Contact ===== -->
   <section id="contact">
     <div class="container">
-      <h2 class="section-title">聯絡我</h2>
-      <div class="contact-center">
-        <p>如果您對我的作品感興趣，或想討論合作機會，歡迎來信！</p>
-        <div class="contact-links">
-          <a href="mailto:28380439a.email@gmail.com" class="contact-link">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            <span>28380439a@gmail.com</span>
+      <div class="section-head reveal">
+        <div class="eyebrow">聯絡我~!</div>
+        <h2 class="section-title">期待下一個值得被看見的合作</h2>
+        <p class="section-desc">不論是品牌頁、作品集、產品介面、角色OC，需要兼顧美感與實作的專案，都很歡迎交流喔。</p>
+      </div>
+
+      <div class="contact-panel glass reveal">
+        <div class="contact-copy">
+          <h3>讓作品說話，也讓合作更有效率</h3>
+          <p>你可以透過 Email、GitHub 或 LinkedIn 找到我。如果你正在規劃個人品牌頁、企業展示站、前端介面，或需要設計與開發整合的合作，我很樂意進一步討論。</p>
+        </div>
+
+        <div class="contact-list">
+          <a class="contact-item" href="mailto:28380439a@gmail.com">
+            <span class="contact-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2Zm0 3.2-8 5.2-8-5.2V6l8 5 8-5v1.2Z"/></svg>
+            </span>
+            <span><strong>Email</strong><span>28380439a@gmail.com</span></span>
           </a>
-          <a href="https://linkedin.com/in/smitlea" target="_blank" class="contact-link">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43A2.06 2.06 0 1 1 5.34 3.3a2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"/></svg>
-            <span>LinkedIn</span>
+
+          <a class="contact-item" href="https://github.com/smitlea" target="_blank" rel="noopener">
+            <span class="contact-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.72-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.31-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.53-1.52.12-3.17 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.7.8.58C20.56 21.78 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg>
+            </span>
+            <span><strong>GitHub</strong><span>github.com/smitlea</span></span>
           </a>
-          <a href="https://github.com/smitlea" target="_blank" class="contact-link">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.23c-3.34.72-4.03-1.42-4.03-1.42-.55-1.39-1.33-1.76-1.33-1.76-1.09-.75.08-.73.08-.73 1.21.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49 1 .11-.78.42-1.31.76-1.61-2.67-.31-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.53-1.52.12-3.17 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.65 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.62-5.48 5.92.43.37.82 1.1.82 2.22v3.29c0 .32.19.7.8.58C20.56 21.78 24 17.3 24 12 24 5.37 18.63 0 12 0z"/></svg>
-            <span>GitHub</span>
+
+          <a class="contact-item" href="https://linkedin.com/in/smitlea" target="_blank" rel="noopener">
+            <span class="contact-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45H16.9v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43A2.06 2.06 0 1 1 5.34 3.3a2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg>
+            </span>
+            <span><strong>Discord</strong><span>smitlea</span></span>
           </a>
         </div>
       </div>
     </div>
   </section>
 
+  <footer>
+    © 2025 Smitlea. All rights reserved · Do not copy or redistribute without permission.
+  </footer>
+
   <script>
-    // ===== Smooth scroll for nav links =====
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function(e){
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = [...document.querySelectorAll('section[id]')];
+    const menuBtn = document.getElementById('menuBtn');
+    const navWrap = document.getElementById('navLinks');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
         e.preventDefault();
-        const id = this.getAttribute('href');
-        const target = document.querySelector(id);
-        if(!target) return;
-        const y = target.getBoundingClientRect().top + window.scrollY - 80;
+        const target = document.querySelector(link.getAttribute('href'));
+        if (!target) return;
+        const y = target.getBoundingClientRect().top + window.scrollY - 74;
         window.scrollTo({ top: y, behavior: 'smooth' });
+        navWrap.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
       });
     });
 
-    // ===== Active nav on scroll =====
-    const sections = Array.from(document.querySelectorAll('section[id]'));
-    const navLinks = document.querySelectorAll('.nav-link');
-    const setActive = () => {
-      const y = window.scrollY + 120;
-      let current = '';
+    const setActiveLink = () => {
+      const y = window.scrollY + 130;
+      let current = '#top';
       sections.forEach(sec => {
-        const top = sec.offsetTop, bottom = top + sec.offsetHeight;
-        if (y >= top && y < bottom) current = '#' + sec.id;
+        if (y >= sec.offsetTop && y < sec.offsetTop + sec.offsetHeight) current = '#' + sec.id;
       });
-      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === current));
+      navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === current));
     };
-    document.addEventListener('scroll', setActive, { passive: true });
-    window.addEventListener('load', setActive);
 
-    // ===== Portfolio filters (from smitlea.html) =====
+    document.addEventListener('scroll', setActiveLink, { passive: true });
+    window.addEventListener('load', setActiveLink);
+
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navWrap.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const works = document.querySelectorAll('.work');
-    filterBtns.forEach(btn => btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const cat = btn.dataset.filter;
-      works.forEach(w => {
-        const ok = cat === 'all' || w.dataset.cat === cat;
-        w.classList.toggle('hidden', !ok);
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        projectCards.forEach(card => {
+          const visible = filter === 'all' || card.dataset.cat === filter;
+          card.classList.toggle('hidden', !visible);
+        });
       });
-    }));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('is-visible');
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   </script>
 </body>
-<footer style="margin-top:4rem; padding:2rem 0; border-top:1px solid var(--border-color); color:var(--text-secondary); text-align:center;">
-  © 2025 Smitlea. All rights reserved · Do not copy or redistribute without permission.
-</footer>
 </html>
