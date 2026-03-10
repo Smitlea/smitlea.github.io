@@ -798,6 +798,42 @@
       opacity: 1;
       transform: translateY(0);
     }
+    .contact-panel {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .contact-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      opacity: 0.22;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+    }
+
+    .contact-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(7, 17, 31, 0.82),
+        rgba(7, 17, 31, 0.58)
+      );
+      z-index: 1;
+    }
+
+    .contact-copy,
+    .contact-list {
+      position: relative;
+      z-index: 2;
+    }
 
     .hidden { display: none !important; }
 
@@ -969,7 +1005,7 @@
                 </svg>
               </div>
               <h3>教育背景</h3>
-              <p>國立臺中科技大學 · 資訊工程學系，持續把技術能力延伸到產品與介面設計。</p>
+              <p>國立科技大學 · 資訊工程學系，持續把技術能力延伸到產品與介面設計。</p>
             </article>
 
             <article class="feature-card">
@@ -999,8 +1035,9 @@
                   <path d="M4 18 10 12l4 4 6-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </div>
-              <h3>做事方式</h3>
-              <p>先拆需求，再建立頁面優先級與敘事節奏，最後把細節打磨到可直接展示。</p>
+              <h3>比賽經驗</h3>
+              <p>台北城市黑客松 一 優選</p>
+              <p>晶心科技競賽 一  銅牌</p>
             </article>
           </div>
         </div>
@@ -1083,15 +1120,15 @@
         <div class="skill-highlight-grid reveal">
           <article class="highlight-card">
             <h4>我能做的不只是單點技能</h4>
-            <p>更擅長把設計、程式與專案交付串起來，形成完整的展示與實用價值。</p>
+            <p>更擅長把設計、程式與專案包裝起來，完整的展示與實用價值。</p>
           </article>
           <article class="highlight-card">
-            <h4>技能展示改成流動敘事</h4>
-            <p>用連續跑馬流展示，能比傳統卡片牆更有節奏，也更有記憶點。</p>
+            <h4>將技能展現成故事</h4>
+            <p>每一個小小的技術節點，都是我人生中的1、2年。</p>
           </article>
           <article class="highlight-card">
-            <h4>可再延伸成分類互動</h4>
-            <p>後續也能加入 hover 暫停、點擊展開或技能熟練度細節，架構上可延伸。</p>
+            <h4>經營與互動</h4>
+            <p>我活在數位與現實間的夾層，喜歡創造，我想讓螢幕跟人一樣有溫度。</p>
           </article>
         </div>
       </div>
@@ -1135,7 +1172,7 @@
 
         <article class="project-card reveal" data-cat="app">
           <div class="project-cover">
-            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80" alt="社群應用程式專案縮圖">
+            <img src="https://smitlea.github.io/02.jpg" alt="社群應用程式專案縮圖(私人)">
             <div class="project-overlay">
               <span class="tag">團隊專案</span>
               <span class="tag">2024</span>
@@ -1202,6 +1239,13 @@
       </div>
 
       <div class="contact-panel glass reveal">
+        <img
+            src="https://510208.github.io/_astro/footer_bg.MkGlrby0_ZQcMTA.webp"
+            alt=""
+            class="contact-bg"
+            loading="lazy"
+            decoding="async"
+          >
         <div class="contact-copy">
           <h3>讓作品說話，也讓合作更有效率</h3>
           <p>你可以透過 Email、GitHub 或 LinkedIn 找到我。如果你正在規劃個人品牌頁、企業展示站、前端介面，或需要設計與開發整合的合作，我很樂意進一步討論。</p>
